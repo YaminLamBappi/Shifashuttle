@@ -37,6 +37,8 @@ class HireRequest(models.Model):
         ('pending', 'Pending'),
         ('accepted', 'Accepted'),
         ('rejected', 'Rejected'),
+        ('completed', 'Completed'),
+        
     ]
     status = models.CharField(max_length=20, choices=status_choices, default='pending')
     created_at = models.DateTimeField(auto_now_add=True)

@@ -31,6 +31,14 @@
                     </form>
                     {% elif hire_request.status == 'accepted' %}
                     <p class="status text-success">Status: Accepted</p>
+
+                    <form method="post" action="{% url 'update_hire_request' hire_request.id %}">
+                        {% csrf_token %}
+                        <button type="submit" name="status" value="completed" class="btn btn-info">Completed</button>
+                    </form>
+                    {% elif hire_request.status == 'completed' %}
+                    <p class="status text-success">Status: Completed</p>
+
                     {% elif hire_request.status == 'rejected' %}
                     <p class="status text-danger">Status: Rejected</p>
                     {% endif %}

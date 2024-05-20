@@ -95,9 +95,8 @@ def ambulance_detail(request, ambulance_id):
 @login_required
 def driver_hire_requests(request):
     driver = Driver.objects.get(user=request.user)
-    hire_requests = HireRequest.objects.filter(ambulance__in=driver.ambulances.all())
+    hire_requests = HireRequest.objects.filter(ambulance__in=driver.ambulances.all()).exclude(status='rejected' or 'completed')
     return render(request, 'driver_hire_requests.html', {'hire_requests': hire_requests})
-
 
 
 @login_required
@@ -115,26 +114,24 @@ def update_hire_request(request, request_id):
     
     if request.method == 'POST':
         status = request.POST.get('status')
-        if status in ['accepted', 'rejected']:
+        if status in ['accepted', 'rejected', 'completed']:
             hire_request.status = status
             hire_request.save()
-            # Add a success message
             if status == 'accepted':
                 messages.success(request, f'Hire request from {hire_request.user.username} accepted.')
+            elif status == 'completed':
+                messages.success(request, f'Hire request from {hire_request.user.username} completed.')
             else:
                 messages.success(request, f'Hire request from {hire_request.user.username} rejected.')
     
-    # Redirect back to the driver's hire requests page
     return redirect('driver_hire_requests')
 
 @login_required
 def driver_dashboard(request):
     try:
         driver = Driver.objects.get(user=request.user)
-        # Redirect to the driver profile if it exists
         return redirect('driver_panel')
     except Driver.DoesNotExist:
-        # Redirect to create_driver_profile if the driver profile doesn't exist
         return redirect('create_driver_profile')
 
 
