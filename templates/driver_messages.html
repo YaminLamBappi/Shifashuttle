@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block switch_link %}
+<a href="{% url 'driver_panel' %}">Driver Panel</a>
+<a href="{% url 'driver_home' %}">Home</a>
+
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center mb-4">Inbox</h2>
+    <div class="message-list">
+        {% for message in messages %}
+        <div class="message-card card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">From: {{ message.sender.username }}</h5>
+                <p class="card-text">{{ message.content }}</p>
+                <p class="card-text"><small class="text-muted">{{ message.timestamp }}</small></p>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-muted">No messages in your inbox.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

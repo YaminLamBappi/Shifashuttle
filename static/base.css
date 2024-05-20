@@ -1,0 +1,90 @@
+/* Custom CSS for the inbox page */
+
+.message-list {
+  margin-top: 20px;
+  width: 60%; /* Set width to 60% of the viewport */
+  margin: 0 auto; /* Center the element horizontally */
+}
+
+.message-card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.card-title {
+  color: #333;
+  font-size: 18px;
+  margin-bottom: 0;
+}
+
+.card-text {
+  color: #666;
+}
+
+.card-text:last-child {
+  margin-bottom: 0;
+}
+
+.text-muted {
+  color: #999;
+  font-size: 12px;
+}
+/* Custom CSS for the hire requests page */
+
+.hire-requests-list {
+  margin-top: 20px;
+  width: 60%; /* Set width to 60% of the viewport */
+  margin: 0 auto; /* Center the element horizontally */
+}
+
+.hire-request-card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.hire-request-card p {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+/* Header Styles */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+header h1 {
+  font-size: 1.5em;
+}
+
+header nav {
+  display: flex;
+}
+
+header nav a {
+  padding: 10px 15px;
+  margin-right: 10px;
+  text-decoration: none; /* Remove underline from links */
+  color: #333; /* Use the inherited color */
+}

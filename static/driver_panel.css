@@ -78,6 +78,10 @@ footer {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.feature-box h3 a {
+  text-decoration: none !important;
+}
+
 .feature-box h3 {
   margin-top: 0;
 }

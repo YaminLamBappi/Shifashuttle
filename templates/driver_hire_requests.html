@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block switch_link %}
+<a href="{% url 'driver_panel' %}">Driver Panel</a>
+<a href="{% url 'driver_home' %}">Home</a>
+{% endblock %}
+
+{% block content %}
+<h2>Hire Requests</h2>
+<div class="hire-requests-list">
+    {% for hire_request in hire_requests %}
+    <div class="hire-request-card">
+        <p>From: {{ hire_request.user.username }}</p>
+        <p>Current Location: {{ hire_request.current_location }}</p>
+        <p>Destination: {{ hire_request.destination }}</p>
+
+        {% if hire_request.status == 'pending' %}
+        <form method="post" action="{% url 'update_hire_request' hire_request.id %}">
+            {% csrf_token %}
+            <button type="submit" name="status" value="accepted">Accept</button>
+            <button type="submit" name="status" value="rejected">Reject</button>
+        </form>
+        {% elif hire_request.status == 'accepted' %}
+        <p class="status">Status: Accepted</p>
+        {% elif hire_request.status == 'rejected' %}
+        <p class="status">Status: Rejected</p>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

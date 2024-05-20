@@ -28,23 +28,22 @@
         <div class="profile-container">
             {% if user.is_authenticated %}
             <div class="container">
-                <div class="jumbotron">
-                    <h2>Driver Panel</h2>
 
-                </div>
 
                 <div class="feature-box">
-                    <h3><a href="{% url 'driver_profile' %}">Profile</a></h3>
-                    <p>See your Daily Homework</p>
+                    <h3><a href="{% url 'driver_messages' %}" style="text-decoration: none;">Inbox</a></h3>
+                    <p>View your messages.</p>
                 </div>
                 <div class="feature-box">
-                    <h3><a href="">Notes</a></h3>
-                    <p> Please note if you need</p>
+                    <h3><a href="{% url 'driver_hire_requests' %}" style="text-decoration: none;">Get Hired</a>
+                    </h3>
+                    <p>See Your Hire Requests.</p>
                 </div>
                 <div class="feature-box">
-                    <h3><a href="">Profile</a></h3>
-                    <p>Visit your profile</p>
+                    <h3><a href="{% url 'driver_profile' %}" style="text-decoration: none;">Profile</a></h3>
+                    <p>View and Edit Your Profile.</p>
                 </div>
+
             </div>
             {% else %}
             <p>You are not logged in</p>

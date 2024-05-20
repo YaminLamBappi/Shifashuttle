@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Available Ambulances</h2>
+<div class="ambulance-list">
+    {% for ambulance in ambulances %}
+    <div class="ambulance-card">
+        <h3>{{ ambulance.registration_number }}</h3>
+        <p>Model: {{ ambulance.model }}</p>
+        <p>Capacity: {{ ambulance.capacity }}</p>
+        <a href="{% url 'ambulance_detail' ambulance.id %}">Details</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

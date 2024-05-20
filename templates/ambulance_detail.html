@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Ambulance Detail</h1>
+<p>Registration Number: {{ ambulance.registration_number }}</p>
+<p>Model: {{ ambulance.model }}</p>
+<p>Capacity: {{ ambulance.capacity }}</p>
+<p>Status: {{ ambulance.get_status_display }}</p>
+<p>Location: {{ ambulance.location }}</p>
+
+<h2>Send Hire Request</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ hire_request_form.as_p }}
+    <button type="submit" name="send_hire_request">Send Hire Request</button>
+</form>
+
+<h2>Message Driver</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ message_form.as_p }}
+    <button type="submit" name="send_message">Send Message</button>
+</form>
+{% endblock %}
