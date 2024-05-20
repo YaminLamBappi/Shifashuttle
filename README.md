@@ -26,7 +26,7 @@ Installation:
 
     bash
 
-git clone https://github.com/username/ambulance-service.git
+git clone https://github.com/YaminLamBappi/Shifashuttle
 
 Navigate to the project directory:
 
