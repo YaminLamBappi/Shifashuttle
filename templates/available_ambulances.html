@@ -8,14 +8,34 @@
     {% for ambulance in ambulances %}
     <div class="col-md-4">
         <div class="card mb-4 shadow-sm">
+
+
             <div class="card-body">
+                {% if user.is_authenticated %}
                 <a href="{% url 'ambulance_detail' ambulance.id %}">
                     <h5 class="card-title">{{ ambulance.registration_number }}</h5>
                 </a>
+
                 <p class="card-text">Model: {{ ambulance.model }}</p>
                 <p class="card-text">Capacity: {{ ambulance.capacity }}</p>
+                {% else %}
+
+                <p class="card-text">Model: {{ ambulance.model }}</p>
+                <p class="card-text">Capacity: {{ ambulance.capacity }}</p>
+
+                {% endif %}
+
+                {% if user.is_authenticated %}
+
                 <a href="{% url 'send_message' ambulance.id %}" class="btn btn-primary">Message</a>
                 <a href="{% url 'hire_request' ambulance.id %}" class="btn btn-primary">Hire Request</a>
+
+                {% else %}
+
+                <a href="{% url 'login' %}">Log In To See Details</a>
+
+                {% endif %}
+
             </div>
         </div>
     </div>

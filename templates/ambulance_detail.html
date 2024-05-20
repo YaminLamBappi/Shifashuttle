@@ -18,12 +18,13 @@
                     <p><strong>Location:</strong> {{ ambulance.location }}</p>
                     {% if ambulance.driver %}
                     <p><strong>Driver Name:</strong> {{ ambulance.driver.user.get_full_name }}</p>
-                    <p><strong>Contact Number:</strong> {{ ambulance.driver.phone }}</p>
+                    <p><strong>Contact Number:</strong> {{ ambulance.driver.user.phone }}</p>
                     {% else %}
                     <p><strong>Driver:</strong> Not Assigned</p>
                     {% endif %}
                 </div>
             </div>
+
             <div class="text-center mt-4">
                 <a href="{% url 'hire_request' ambulance.id %}" class="btn btn-primary btn-lg mr-2">
                     Send Hire Request
@@ -32,6 +33,7 @@
                     Send Message
                 </a>
             </div>
+
         </div>
     </div>
 </div>
