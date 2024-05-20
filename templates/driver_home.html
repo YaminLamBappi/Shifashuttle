@@ -1,0 +1,44 @@
+{% extends 'home.html'%}
+{% load static%}
+
+{% block switch_link %}
+<a href="{% url 'driver_dashboard' %}">Dashboard</a>
+<a href="{% url 'home' %}">Switch to User</a>
+
+{% endblock %}
+
+
+{% block hire_links %}
+
+<section class="hero">
+    <a href="#" class="btn btn-primary">Get Hired
+    </a>
+</section>
+
+{% endblock %}
+
+{% block feature_content %}
+
+<section class="features">
+    <h2>Driver Dashboard Features</h2>
+    <div class="feature-card">
+        <img src="{% static 'image/assigned.png' %}" alt="assignment icon">
+        <h3>Job Assignment</h3>
+        <p>Receive and manage ambulance job assignments in real-time. Stay updated with new tasks and ensure prompt
+            service delivery.</p>
+    </div>
+    <div class="feature-card">
+        <img src="{% static 'image/navigate.png' %}" alt="navigation icon">
+        <h3>Route Optimization</h3>
+        <p>Access optimized routes for quicker and more efficient navigation. Utilize GPS features to find the best
+            paths and avoid traffic.</p>
+    </div>
+    <div class="feature-card">
+        <img src="{% static 'image/status.png' %}" alt="status icon">
+        <h3>24/7 Support</h3>
+        <p>Benefit from round-the-clock support. Our team is available to assist you at any time, ensuring smooth
+            operations and quick resolutions to any issues.</p>
+    </div>
+</section>
+
+{% endblock %}

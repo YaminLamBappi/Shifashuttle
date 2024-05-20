@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Django Auth {% endblock %}</title>
+</head>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+</nav>
+
+<body>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+<footer class="footer">
+    <a class="navbar-brand" href="{% url 'logout' %}">Logout</a>
+</footer>
+
+</html>

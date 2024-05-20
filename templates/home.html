@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShifaShuttle</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            {% if user.is_authenticated %}
+
+            {% block switch_link %}
+            <a href="{% url 'user_profile' %}">Profile</a>
+            <a href="{% url 'driver_home' %}">Switch to Driver</a>
+            {% endblock %}
+
+            {% else %}
+            <a href="{% url 'login' %}">Log In</a>
+
+
+            <a href="#">Features</a>
+
+            {% endif %}
+
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+        </nav>
+        <div class="logo">
+            <a href="#">ShifaShuttle</a>
+        </div>
+    </header>
+
+    <main>
+
+        {% if user.is_authenticated %}
+
+        {% block hire_links %}
+
+        <section class="hero">
+            <a href="#" class="btn btn-primary">Hire Ambulance</a>
+        </section>
+
+        {% endblock %}
+
+        {% endif %}
+
+
+        {% block feature_content %}
+
+        <section class="features">
+            <h2>Our Powerful Features</h2>
+            <div class="feature-card">
+                <img src="{% static 'image/appointment.png' %}" alt="booking icon">
+                <h3>Instant Booking</h3>
+                <p>Easily book an ambulance with just a few clicks. Our streamlined process ensures that you can get
+                    help quickly and efficiently, when you need it most.</p>
+            </div>
+            <div class="feature-card">
+                <img src="{% static 'image/24-7.png' %}" alt="tracking icon">
+                <h3>Real-Time Tracking</h3>
+                <p>Track the location of your ambulance in real-time. Stay informed about the exact arrival time and
+                    ensure peace of mind during emergencies.</p>
+            </div>
+            <div class="feature-card">
+                <img src="{% static 'image/gps.png' %}" alt="GPS ICON">
+                <h3>24/7 Availability</h3>
+                <p>Our service is available around the clock. Whether it's day or night, you can rely on us to provide
+                    immediate medical transportation whenever an emergency arises.</p>
+            </div>
+        </section>
+
+        {% endblock %}
+
+
+    </main>
+
+    <footer>
+        {% if user.is_authenticated %}
+
+        <a class="navbar-brand" href="{% url 'logout' %}">Logout</a>
+
+        {% endif %}
+
+        <p>&copy; 2024 Your Company Name</p>
+        <a href="#">Terms & Conditions</a>
+        <a href="#">Privacy Policy</a>
+        <ul class="social-icons">
+            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+        </ul>
+    </footer>
+
+</body>
+
+</html>

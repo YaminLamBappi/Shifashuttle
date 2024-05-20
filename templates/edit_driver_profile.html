@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Driver Profile</title>
+</head>
+
+<body>
+    <h2>Edit Driver Profile</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+    <a href="{% url 'driver_dashboard' %}">Back to Dashboard</a>
+</body>
+
+</html>

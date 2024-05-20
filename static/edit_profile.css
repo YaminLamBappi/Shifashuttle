@@ -1,0 +1,38 @@
+/* Style the form container */
+form {
+  width: 45%;
+  margin: 0 auto;
+}
+
+/* Style form headings */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Style form fields */
+input[type="text"],
+input[type="email"],
+input[type="file"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Style form buttons */
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #007aff; /* Apple blue color */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3; /* Darker shade of Apple blue */
+}

@@ -1,0 +1,136 @@
+/* Basic styles */
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  padding: 0;
+}
+
+/* Header styles */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+header h1 {
+  font-size: 1.5em;
+}
+
+header nav {
+  display: flex;
+}
+
+header nav a {
+  padding: 10px 15px;
+  margin-right: 10px;
+}
+
+/* Main content styles */
+main {
+  padding: 50px 0;
+}
+
+.profile-container {
+  margin: 0 auto;
+  max-width: 700px; /* Adjust as needed */
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.profile-card {
+  /* Style the card within the container */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-picture {
+  margin-bottom: 20px;
+  width: 150px; /* Adjust image size as needed */
+  height: 150px;
+  border-radius: 50%; /* Circular profile picture */
+  overflow: hidden; /* Crop image if necessary */
+}
+
+.profile-picture img {
+  width: 100%; /* Ensure image fills the container */
+  height: 100%;
+  object-fit: cover; /* Crop image to fit within the circle */
+}
+
+.profile-info {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-info h2 {
+  font-size: 1.8em;
+  margin-bottom: 5px;
+}
+
+.profile-info p {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 5px;
+}
+
+.profile-bio {
+  margin-bottom: 20px;
+}
+
+.profile-bio h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.profile-bio p {
+  font-size: 14px;
+  line-height: 1.5; /* Improve readability with line spacing */
+}
+
+.profile-card a {
+  background-color: #007bff; /* Blue button */
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: auto; /* Position button at bottom */
+}
+button[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Footer styles */
+footer {
+  padding: 20px;
+  text-align: center;
+  background-color: #f0f0f0;
+  color: #777; /* Greyish text */
+}
