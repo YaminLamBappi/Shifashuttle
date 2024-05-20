@@ -1,24 +1,38 @@
 {% extends 'base.html' %}
 
+{% block title %}Ambulance Detail{% endblock %}
+
 {% block content %}
-<h1>Ambulance Detail</h1>
-<p>Registration Number: {{ ambulance.registration_number }}</p>
-<p>Model: {{ ambulance.model }}</p>
-<p>Capacity: {{ ambulance.capacity }}</p>
-<p>Status: {{ ambulance.get_status_display }}</p>
-<p>Location: {{ ambulance.location }}</p>
-
-<h2>Send Hire Request</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ hire_request_form.as_p }}
-    <button type="submit" name="send_hire_request">Send Hire Request</button>
-</form>
-
-<h2>Message Driver</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ message_form.as_p }}
-    <button type="submit" name="send_message">Send Message</button>
-</form>
+<div class="container my-5">
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <h1 class="card-title text-center mb-4">Ambulance Detail</h1>
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Registration Number:</strong> {{ ambulance.registration_number }}</p>
+                    <p><strong>Model:</strong> {{ ambulance.model }}</p>
+                    <p><strong>Capacity:</strong> {{ ambulance.capacity }}</p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Status:</strong> {{ ambulance.get_status_display }}</p>
+                    <p><strong>Location:</strong> {{ ambulance.location }}</p>
+                    {% if ambulance.driver %}
+                    <p><strong>Driver Name:</strong> {{ ambulance.driver.user.get_full_name }}</p>
+                    <p><strong>Contact Number:</strong> {{ ambulance.driver.phone }}</p>
+                    {% else %}
+                    <p><strong>Driver:</strong> Not Assigned</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="{% url 'hire_request' ambulance.id %}" class="btn btn-primary btn-lg mr-2">
+                    Send Hire Request
+                </a>
+                <a href="{% url 'send_message' ambulance.id %}" class="btn btn-secondary btn-lg ml-2">
+                    Send Message
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

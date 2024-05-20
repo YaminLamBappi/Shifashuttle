@@ -1,8 +1,16 @@
+# models.py
 from django.db import models
 from phone_field import PhoneField
 from django.conf import settings
 from user_account.models import CustomUser
 
+class Driver(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    phone = PhoneField(blank=True, null=True, help_text='Contact phone number')
+    profile_pic = models.ImageField(upload_to='driver_profile_pics/', default='default.png')
+
+    def __str__(self):
+        return self.user.username
 
 class Ambulance(models.Model):
     registration_number = models.CharField(max_length=50, unique=True)
@@ -15,24 +23,10 @@ class Ambulance(models.Model):
     ]
     status = models.CharField(max_length=20, choices=status_choices)
     location = models.CharField(max_length=255)  # Field for entering location by text
-    driver = models.OneToOneField('Driver', on_delete=models.SET_NULL, null=True, blank=True, related_name='ambulance')
+    driver = models.ForeignKey(Driver, on_delete=models.SET_NULL, null=True, blank=True, related_name='ambulances')
 
     def __str__(self):
         return self.registration_number
-
-
-class Driver(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    phone = PhoneField(blank=True, null=True, help_text='Contact phone number')
-    profile_pic = models.ImageField(upload_to='driver_profile_pics/', default='default.png')
-    
-    ambulances = models.ManyToManyField(Ambulance, related_name='drivers')
-
-    def __str__(self):
-        return self.user.username
-
-
-    
 
 class HireRequest(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

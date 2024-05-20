@@ -1,14 +1,23 @@
 {% extends 'base.html' %}
 
+{% block title %}Available Ambulances{% endblock %}
+
 {% block content %}
-<h2>Available Ambulances</h2>
-<div class="ambulance-list">
+<h2 class="my-4">Available Ambulances</h2>
+<div class="row">
     {% for ambulance in ambulances %}
-    <div class="ambulance-card">
-        <h3>{{ ambulance.registration_number }}</h3>
-        <p>Model: {{ ambulance.model }}</p>
-        <p>Capacity: {{ ambulance.capacity }}</p>
-        <a href="{% url 'ambulance_detail' ambulance.id %}">Details</a>
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+                <a href="{% url 'ambulance_detail' ambulance.id %}">
+                    <h5 class="card-title">{{ ambulance.registration_number }}</h5>
+                </a>
+                <p class="card-text">Model: {{ ambulance.model }}</p>
+                <p class="card-text">Capacity: {{ ambulance.capacity }}</p>
+                <a href="{% url 'send_message' ambulance.id %}" class="btn btn-primary">Message</a>
+                <a href="{% url 'hire_request' ambulance.id %}" class="btn btn-primary">Hire Request</a>
+            </div>
+        </div>
     </div>
     {% endfor %}
 </div>

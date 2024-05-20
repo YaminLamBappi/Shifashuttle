@@ -9,3 +9,5 @@ class CustomUserAdmin(UserAdmin):
     list_display = ['username', 'email','phone', 'is_staff','bio','profile_pic']
 
 admin.site.register(CustomUser, CustomUserAdmin)
+
+

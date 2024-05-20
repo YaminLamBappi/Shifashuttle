@@ -29,11 +29,28 @@
             <h3>Bio</h3>
             <p>{{ user.bio }}</p>
         </div>
-        <a href="{% url 'edit_driver_profile' %}">Edit Driver Profile</a>
+        <div class="profile-info">
+            <h3>Your Ambulances</h3>
+            <ul>
+                {% for ambulance in driver.ambulances.all %}
+                <li>{{ ambulance.registration_number }} - {{ ambulance.model }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
     </div>
-    <div>
+
+    <div class="profile-info">
+        <button type="submit"> <a href="{% url 'add_ambulance' %}">Add Ambulance</a>
+        </button>
+    </div>
+
+    <div class="profile-info">
         <button type="submit"> <a href="{% url 'change_password' %}">Update Password</a> </button>
     </div>
+
+    <div class="profile-card"><a href="{% url 'edit_driver_profile' %}">Edit Driver Profile</a></div>
+
     {% else %}
     <p>You are not logged in</p>
     <a href="{% url 'login' %}">Log In</a>

@@ -4,13 +4,49 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Ambulance, HireRequest, Message, Driver
-from .forms import HireRequestForm, MessageForm, DriverForm
+from .forms import HireRequestForm, MessageForm, DriverForm, AmbulanceForm
+
 
 
 @login_required
+def add_ambulance(request):
+    if request.method == 'POST':
+        form = AmbulanceForm(request.POST)
+        if form.is_valid():
+            ambulance = form.save(commit=False)
+            driver = Driver.objects.get(user=request.user)
+            ambulance.driver = driver
+            ambulance.save()
+            messages.success(request, 'Ambulance added successfully!')
+            return redirect('driver_profile')
+    else:
+        form = AmbulanceForm()
+    return render(request, 'add_ambulance.html', {'form': form})
+
+
 def available_ambulances(request):
     ambulances = Ambulance.objects.filter(status='available')
     return render(request, 'available_ambulances.html', {'ambulances': ambulances})
+
+@login_required
+def send_message(request, ambulance_id):
+    ambulance  = get_object_or_404(Ambulance, id = ambulance_id)
+    driver = ambulance.driver  # Assuming each ambulance has one driver
+
+    if request.method == 'POST':
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.sender = request.user
+            message.receiver = driver.user  # Assuming the driver is linked to a user
+            message.save()
+            messages.success(request, 'Message sent successfully!')
+            return redirect('ambulance_detail', ambulance_id=ambulance.id)
+    else:
+        form = MessageForm()
+
+    return render(request, 'send_message.html', {'form': form, 'ambulance': ambulance})
+
 
 @login_required
 def hire_request(request, ambulance_id):
@@ -35,16 +71,7 @@ def ambulance_detail(request, ambulance_id):
     message_form = MessageForm()
 
     if request.method == 'POST':
-        if 'send_hire_request' in request.POST:
-            hire_request_form = HireRequestForm(request.POST)
-            if hire_request_form.is_valid():
-                hire_request = hire_request_form.save(commit=False)
-                hire_request.user = request.user
-                hire_request.ambulance = ambulance
-                hire_request.save()
-                messages.success(request, 'Hire request sent successfully!')
-                return redirect('ambulance_detail', ambulance_id=ambulance_id)
-        elif 'send_message' in request.POST:
+        if 'send_message' in request.POST:
             message_form = MessageForm(request.POST)
             if message_form.is_valid():
                 message = message_form.save(commit=False)
@@ -70,6 +97,7 @@ def driver_hire_requests(request):
     driver = Driver.objects.get(user=request.user)
     hire_requests = HireRequest.objects.filter(ambulance__in=driver.ambulances.all())
     return render(request, 'driver_hire_requests.html', {'hire_requests': hire_requests})
+
 
 
 @login_required
