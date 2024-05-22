@@ -1,5 +1,5 @@
 from django import forms
-from .models import Driver, Ambulance
+from .models import Driver, Ambulance, ContactMessage
 from .models import HireRequest, Message
 
 class AmbulanceForm(forms.ModelForm):
@@ -22,3 +22,10 @@ class DriverForm(forms.ModelForm):
     class Meta:
         model = Driver
         fields = ['phone', 'profile_pic']
+
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = ContactMessage
+        fields = ['name', 'email', 'message']
+

@@ -4,7 +4,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Ambulance, HireRequest, Message, Driver
-from .forms import HireRequestForm, MessageForm, DriverForm, AmbulanceForm
+from .forms import HireRequestForm, MessageForm, DriverForm, AmbulanceForm, ContactForm
+
 
 
 
@@ -41,7 +42,7 @@ def send_message(request, ambulance_id):
             message.receiver = driver.user  # Assuming the driver is linked to a user
             message.save()
             messages.success(request, 'Message sent successfully!')
-            return redirect('ambulance_detail', ambulance_id=ambulance.id)
+            return redirect('available_ambulances')
     else:
         form = MessageForm()
 
@@ -177,6 +178,10 @@ def create_driver_profile(request):
 def driver_home(request):
     return render(request, "driver_home.html")
 
+def about_us(request):
+    return render(request, "about_us.html")
+
+
 @login_required
 def driver_panel(request):
     return render(request, "driver_panel.html")
@@ -189,3 +194,17 @@ def driver_profile(request):
     except Driver.DoesNotExist:
         driver = None
     return render(request, 'driver_profile.html', {'driver': driver})
+
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('contact_success')  
+    else:
+        form = ContactForm()
+    return render(request, 'contact.html', {'form': form})
+
+def contact_success(request):
+    return render(request, "contact_success.html")

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Driver, Ambulance
+from .models import Driver, Ambulance, ContactMessage
 from .models import  HireRequest, Message
 
 class AmbulanceAdmin(admin.ModelAdmin):
@@ -24,12 +24,16 @@ class MessageAdmin(admin.ModelAdmin):
     search_fields = ('sender__username', 'receiver__username', 'content')
     list_filter = ('timestamp',)
     ordering = ('-timestamp',)
+    
+class ContactMessageAdmin(admin.ModelAdmin):
+    list_display = ('name','email','message')
+    
 
 admin.site.register(Ambulance, AmbulanceAdmin)
 admin.site.register(Driver, DriverAdmin)
 admin.site.register(HireRequest, HireRequestAdmin)
 admin.site.register(Message, MessageAdmin)
-
+admin.site.register(ContactMessage,ContactMessageAdmin)
 
 
     

@@ -1,8 +1,20 @@
 {% extends 'base.html' %}
 
-{% block switch_link %}
-<a href="{% url 'driver_panel' %}" class="btn btn-primary">Driver Panel</a>
-<a href="{% url 'driver_home' %}" class="btn btn-secondary">Home</a>
+{% block navlinks %}
+<div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'driver_home' %}">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'driver_panel' %}">Driver Panel</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'user_profile' %}">Profile</a>
+        </li>
+
+    </ul>
+</div>
 {% endblock %}
 
 {% block content %}
@@ -13,8 +25,8 @@
         <div class="col-md-4 mb-4">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Name: {{ hire_request.user.get_full_name }}</h5>
-                    <p class="card-text">Phone Number:
+                    <h5 class="card-title">{{ hire_request.user.get_full_name }}</h5>
+                    <p class="card-text">
                         {% if hire_request.user.phone %}
                         {{ hire_request.user.phone }}
                         {% else %}

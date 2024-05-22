@@ -139,3 +139,34 @@ footer {
 .social-icons i {
   font-size: 1.5em;
 }
+
+/* About Us Styles */
+
+.about-us h2 {
+  text-align: center;
+}
+
+.about-us p {
+  line-height: 1.6;
+}
+
+.about-us ul {
+  list-style: none;
+  padding-left: 20px;
+}
+
+.social-icons {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.social-icons li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.social-icons li a {
+  color: #fff;
+  font-size: 1.5rem;
+}
